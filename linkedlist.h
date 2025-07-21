@@ -14,10 +14,11 @@ public:
     void insertStart(int value); 
     void insertMiddle(int value, int pos); 
     void insertEnd(int value); 
-    void Search(int value); 
-    void dlt();
-    void Size(); 
-
+    void dltFirst();
+    void dltLast();
+    void dltList(); //to be done 
+    int Size(); 
+    bool Search(int value); 
     void display(); 
 }; 
 

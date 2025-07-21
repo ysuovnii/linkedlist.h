@@ -21,6 +21,10 @@ void linkedlist::insertMiddle(int value, int pos){
     Node*temp = start; 
     pos--; 
     while(pos--){
+        if(temp == nullptr){
+            cout << "Position out of bonds";
+            return;
+        }
         temp = temp->next; 
     }
     if(temp == nullptr){
@@ -52,7 +56,7 @@ void linkedlist::insertEnd(int value){
 
 }
 
-void linkedlist::Search(int value){
+bool linkedlist::Search(int value){
     Node* temp = start; 
     bool b = false; 
     while(temp){
@@ -62,15 +66,11 @@ void linkedlist::Search(int value){
         }
         temp = temp->next; 
     }
-    if(b){
-        cout << "Found"; 
-    }else{
-        cout << "Not Found"; 
-    }
+    return b; 
 
 }
 
-void linkedlist::Size(){
+int linkedlist::Size(){
     Node* temp = start; 
     int count = 0; 
     while(temp){
@@ -78,31 +78,38 @@ void linkedlist::Size(){
         temp = temp->next; 
     }
 
-    cout << count; 
+    return count; 
 }
 
-void linkedlist::dlt(){
-    //--------to del start---------
-    // if(start == nullptr){
-    //     cout << "Nothing to delete";
-    //     return; 
-    // }
-    // Node* temp = start; 
-    // start = start->next;
+void linkedlist::dltFirst(){
+    if(start == nullptr){
+        cout << "Empty list";
+        return; 
+    }
+    Node* temp = start; 
+    start = start->next;
 
-    // delete temp; 
+    delete temp; 
+}
 
-
-    //---------to del end----------
-    // Node* temp = start;
-    // Node* curr = nullptr; 
-    // while(temp -> next != nullptr){
-    //     curr = temp; 
-    //     temp = temp->next; 
-    // } 
-    // delete temp; 
-    // curr->next = nullptr;
-
+void linkedlist::dltLast(){
+    if(start == nullptr){
+        cout << "Empty list";
+        return; 
+    }
+    if(start->next == nullptr){
+        delete start; 
+        start = nullptr; 
+        return; 
+    }
+    Node*temp = start; 
+    Node* curr = nullptr; 
+    while(temp->next != nullptr){
+        curr = temp; 
+        temp = temp->next; 
+    }
+    curr->next = nullptr;
+    delete temp; 
 }
 
 void linkedlist::display(){
@@ -113,3 +120,11 @@ void linkedlist::display(){
     }
 }
 
+void linkedlist::dltList(){
+   Node* temp; 
+   while(start != nullptr){
+        temp = start; 
+        start = start->next; 
+        delete temp;
+   } 
+}
